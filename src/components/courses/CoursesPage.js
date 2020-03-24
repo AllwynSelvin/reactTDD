@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
-class CoursesPage extends React.Component {
+export class CoursesPage extends React.Component {
   state = {
     redirectToAddCoursePage: false
   };
