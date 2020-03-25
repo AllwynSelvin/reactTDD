@@ -20,8 +20,4 @@ describe('About page test', () => {
         expect(wrapper.find('a.nav-item')).toHaveLength(3);
         expect(wrapper.find('a.nav-item.active').text()).toEqual('React');
     });
-
-    // it('should change the tab content on Click', () => {
-
-    // });
 });
