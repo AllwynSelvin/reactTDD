@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatcurrencyToUS } from "../../utils/utils";
 
 const HomePage = () => (
   <div className="jumbotron">
@@ -8,6 +9,13 @@ const HomePage = () => (
     <Link to="about" className="btn btn-primary btn-lg">
       Learn more
     </Link>
+    <br />
+    <div id="currencyId">
+      Buy now at&nbsp;
+      <b>
+        <span>{formatcurrencyToUS(50000)}</span>
+      </b>
+    </div>
   </div>
 );
 

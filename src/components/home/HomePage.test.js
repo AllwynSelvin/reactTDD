@@ -72,4 +72,18 @@ describe("renders home page", () => {
     //console.log("history 2---->", history.location);
     expect(history.location.pathname).toEqual("/about");
   });
+
+  test("Check the currency function returns as expected", () => {
+    let history = createMemoryHistory();
+    let { container, getByText } = render(
+      <Router history={history}>
+        <App />
+      </Router>
+    );
+    //console.log("herererer>>>>>>>>>>>>>>>", container.innerHTML);
+    console.log(
+      "herererer>>>>>>>>>>>>>>>222222",
+      document.getElementById("currencyId").innerHTML
+    );
+  });
 });
