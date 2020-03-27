@@ -48,3 +48,13 @@ export const sortAscending = (value) => {
         return a[value] - b[value];
     });
 }
+
+export const  formatcurrencyToUS = (amount) => {
+//   console.log("IN-------------->", amount);
+  var formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+  });
+  let currencyUSD = formatter.format(amount);
+  return currencyUSD;
+}

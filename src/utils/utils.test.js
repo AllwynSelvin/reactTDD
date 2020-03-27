@@ -1,4 +1,4 @@
-import { dateFormate, isValidPassword, sortAscending } from './utils.js';
+import { dateFormate, isValidPassword, sortAscending, formatcurrencyToUS } from './utils.js';
 import moment from 'moment';
 let billgroups = [
     {
@@ -106,4 +106,10 @@ describe("utils function", () => {
         let result3 = sortAscending("pendingEnrollmentCount");
         expect(result3).toEqual(billgroups2);
     })
+
+    it("check currency format returns", () => {
+        const comp = formatcurrencyToUS(50000);
+        expect(comp).toEqual("$50,000.00");
+      });
 })
+
