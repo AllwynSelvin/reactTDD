@@ -9,7 +9,7 @@ const courselist = shallow(<CourseList {...props} />);
 describe('renders course list page', () => {
   it('mounts', () => {
     expect(courselist).toBeTruthy();
-    console.log(courselist.debug());
+    // console.log(courselist.debug());
   });
 });
 

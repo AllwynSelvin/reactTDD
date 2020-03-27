@@ -6,7 +6,7 @@ describe('renders home page', () => {
   const home = shallow(<HomePage />);
   it('mounts', () => {
     expect(home).toBeTruthy();
-    console.log(home.debug());
+    // console.log(home.debug());
   });
   it('displays home title', () => {
     expect(home.find('h1').text()).toEqual('Pluralsight Administration');
