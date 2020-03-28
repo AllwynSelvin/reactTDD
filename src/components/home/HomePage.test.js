@@ -2,7 +2,7 @@ import React from "react";
 import HomePage from "./HomePage";
 import AboutPage from "../about/AboutPage";
 import { mount } from "enzyme";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "react-testing-library";
 import { MemoryRouter, Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import App from "../App";
@@ -20,7 +20,6 @@ describe("renders home page", () => {
   it("mounts", () => {
     const home = mount(getComponent("/"));
     expect(home).toBeTruthy();
-    //console.log(home.debug());
   });
   it("displays home title", () => {
     const home = mount(getComponent("/"));
@@ -71,5 +70,19 @@ describe("renders home page", () => {
     fireEvent.click(getByText(/about/i));
     //console.log("history 2---->", history.location);
     expect(history.location.pathname).toEqual("/about");
+  });
+
+  test("Check the currency function returns as expected", () => {
+    let history = createMemoryHistory();
+    let { container, getByText } = render(
+      <Router history={history}>
+        <App />
+      </Router>
+    );
+    //console.log("herererer>>>>>>>>>>>>>>>", container.innerHTML);
+    console.log(
+      "herererer>>>>>>>>>>>>>>>222222",
+      document.getElementById("currencyId").innerHTML
+    );
   });
 });
