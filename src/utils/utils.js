@@ -32,16 +32,16 @@ export const dateFormate = value => {
     return moment().subtract(value, 'month').format("MM/DD/YYYY");
 }
 
-export const isValidPassword = pwd => {
-    let pwdLen = pwd.length >= 8;
-    var scRegex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    let alphaRegex = /^[A-Za-z]/;
-    let numRegex = /[0-9]/;
-    let isContainsSC = scRegex.test(pwd);
-    let isContainsNum = numRegex.test(pwd);
-    let isContainsAlpha = alphaRegex.test(pwd);
-    return pwdLen && isContainsSC && isContainsNum && isContainsAlpha;
-}
+// export const isValidPassword = pwd => {
+//     let pwdLen = pwd.length >= 8;
+//     var scRegex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+//     let alphaRegex = /^[A-Za-z]/;
+//     let numRegex = /[0-9]/;
+//     let isContainsSC = scRegex.test(pwd);
+//     let isContainsNum = numRegex.test(pwd);
+//     let isContainsAlpha = alphaRegex.test(pwd);
+//     return pwdLen && isContainsSC && isContainsNum && isContainsAlpha;
+// }
 
 export const sortAscending = (value) => {
     return billgroups.sort((a, b) => {
