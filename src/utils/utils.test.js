@@ -67,17 +67,17 @@ let billgroups2 = [
 
 describe("check the utils format as expected", () => {
   it("check currency format returns", () => {
-    let comp = formatcurrencyToUS("50000");
+    let comp = formatcurrencyToUS("$50000.0000");
     expect(comp).toEqual("$50,000.00");
 
     comp = formatcurrencyToUS(100);
     expect(comp).toEqual("$100.00");
 
-    // comp = formatcurrencyToUS("$100");
-    // expect(comp).toEqual("$100.00");
+    comp = formatcurrencyToUS("$100");
+    expect(comp).toEqual("$100.00");
 
-    // comp = formatcurrencyToUS("$10,000");
-    // expect(comp).toEqual("$100.00");
+    comp = formatcurrencyToUS("$10,000");
+    expect(comp).toEqual("$10,000.00");
 
     //console.log("comp>>>>>", comp);
   });
@@ -95,8 +95,11 @@ describe("check the utils format as expected", () => {
     comp = phoneNumberFormatUS("12345");
     expect(comp).toEqual(null);
 
-    // comp = phoneNumberFormatUS("(123) 456-7890");
-    // expect(comp).toEqual(null);
+    comp = phoneNumberFormatUS("1234-567890");
+    expect(comp).toEqual("(123) 456-7890");
+
+    comp = phoneNumberFormatUS("(123) 456-7890");
+    expect(comp).toEqual("(123) 456-7890");
 
     //console.log("comp>>>>>", comp);
   });

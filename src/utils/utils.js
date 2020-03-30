@@ -52,13 +52,23 @@ export const sortAscending = value => {
 };
 
 export const formatcurrencyToUS = amount => {
-  console.log("IN-------------->", amount);
-  var formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD"
-  });
-  let currencyUSD = formatter.format(amount);
-  return currencyUSD;
+  console.log("IN-------------->", amount, typeof amount);
+
+  var amt = amount && amount.toString().split(".");
+  //console.log(">>>>>>>>>>>>>>>1111", amt[0]);
+  var cleaned = ("" + amt[0]).replace(/\D/g, "");
+  //console.log(">>>>>>>>>>>>>>>2222", cleaned);
+  var match = cleaned.match(/^[0-9]*$/);
+
+  if (match) {
+    var formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+    let currencyUSD = formatter.format(match);
+    return currencyUSD;
+  }
+  return null;
 };
 
 // Input: 9999999999
