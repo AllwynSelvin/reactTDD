@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatcurrencyToUS } from "../../utils/utils";
+import { formatcurrencyToUS, phoneNumberFormatUS } from "../../utils/utils";
 
 const HomePage = () => (
   <div className="jumbotron">
@@ -14,6 +14,12 @@ const HomePage = () => (
       Buy now at&nbsp;
       <b>
         <span>{formatcurrencyToUS(50000)}</span>
+      </b>
+    </div>
+    <div id="phoneId">
+      Contact at&nbsp;
+      <b>
+        <span>{phoneNumberFormatUS(1234567890)}</span>
       </b>
     </div>
   </div>
