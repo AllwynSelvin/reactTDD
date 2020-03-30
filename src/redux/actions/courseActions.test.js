@@ -9,7 +9,7 @@ import configureMockStore from "redux-mock-store";
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-describe("Async Actions", () => {
+fdescribe("Async Actions", () => {
   afterEach(() => {
     fetchMock.restore();
   });
@@ -32,21 +32,59 @@ describe("Async Actions", () => {
       });
     });
   });
+  it("should update ", async() => {
+    let course = {
+      id: 1,
+      title: "Securing React Apps with Auth0 - update",
+      slug: "react-auth0-authentication-security",
+      authorId: 1,
+      category: "JavaScript"
+    };
+    fetchMock.mock('*', {
+      headers: { "content-type": "application/json" },
+      body: course
+    });
+
+    const expectedActions = [
+      { type: types.BEGIN_API_CALL },
+      { type: types.UPDATE_COURSE_SUCCESS, course }
+    ];
+
+    const store = mockStore({ courses: [] });
+    return await store.dispatch(courseActions.saveCourse(course)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
 });
 
 describe("createCourseSuccess", () => {
+    beforeAll(() => {
+
+    });
   it("should create a CREATE_COURSE_SUCCESS action", () => {
-    //arrange
     const course = courses[0];
     const expectedAction = {
       type: types.CREATE_COURSE_SUCCESS,
       course
     };
-
-    //act
     const action = courseActions.createCourseSuccess(course);
+    expect(action).toEqual(expectedAction);
 
-    //assert
+  });
+  it('Should create a UPDATE_COURSE_SUCCESS action', () => {
+    const course_update = {
+      id: 1,
+      title: "Securing React Apps with Auth0 - Updated",
+      slug: "react-auth0-authentication-security",
+      authorId: 1,
+      category: "JavaScript"
+    }
+    const expectedAction = {
+      type: types.UPDATE_COURSE_SUCCESS,
+      course : course_update
+    };
+    
+    const action = courseActions.updateCourseSuccess(course_update);
     expect(action).toEqual(expectedAction);
   });
 });
