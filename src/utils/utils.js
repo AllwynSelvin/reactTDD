@@ -36,6 +36,7 @@ export const dateFormate = value => {
 
 export const isValidPassword = pwd => {
   let pwdLen = pwd.length >= 8;
+  // eslint-disable-next-line no-useless-escape
   var scRegex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
   let alphaRegex = /^[A-Za-z]/;
   let numRegex = /[0-9]/;
