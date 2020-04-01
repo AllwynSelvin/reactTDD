@@ -1,76 +1,47 @@
-import { getCourses } from "./courseApi";
+import { getCourses, saveCourse, deleteCourse } from "./courseApi";
+import axiosMock from 'axios'
+
+jest.mock('axios');
+
 
 describe("check API calls", () => {
-  it("success scenario", async function() {
-    let resData = {
+  it("get course scenario",  () => {
+    let res = {
       id: 10,
       title: "Securing React Apps with Auth0",
       slug: "react-auth0-authentication-security",
       authorId: 11,
       category: "JavaScript"
     };
-    global.fetch = jest.fn().mockImplementation(() => {
-      var p = new Promise((resolve, reject) => {
-        resolve({
-          ok: true,
-          status: 200,
-          Id: "123",
-          json: function() {
-            return {
-              id: 10,
-              title: "Securing React Apps with Auth0",
-              slug: "react-auth0-authentication-security",
-              authorId: 11,
-              category: "JavaScript"
-            };
-          }
-        });
-      });
-
-      return p;
-    });
-    const response = await getCourses();
-    //console.log("response---->1111", response);
-    expect(response).toEqual(resData);
+    axiosMock.get.mockImplementationOnce(() => Promise.resolve(res));
+    expect(getCourses()).resolves.toEqual(res);   
+    expect(axiosMock.get).toHaveBeenCalledTimes(1)
   });
 
-  it("failure scenario", async function() {
-    let errData = "Error returned";
-    global.fetch = jest.fn().mockImplementation(() => {
-      var p = new Promise((resolve, reject) => {
-        resolve({
-          ok: false,
-          status: 400,
-          Id: "123",
-          text: function() {
-            return "Error returned";
-          }
-        });
-      });
-
-      return p;
-    });
-    const response = await getCourses();
-    console.log("response---->2222", response);
-    expect(response).toBe(errData);
-    // expect(response.Id).toBe(1);
+  it("delete course scenario", async() => {
+    let res = {
+      status : 200,
+      data : {}
+    };
+    axiosMock.delete.mockImplementationOnce(() => Promise.resolve(res));
+    console.log(await deleteCourse(1));
+    await expect(deleteCourse(1)).resolves.toEqual(res.data);   
+    expect(axiosMock.delete).toHaveBeenCalledTimes(1)
   });
 
-  it("incase of network failure scenario", async function() {
-    let errData = "Network Err";
-    global.fetch = jest.fn().mockImplementation(() => {
-      var p = new Promise((resolve, reject) => {
-        resolve({
-          ok: false,
-          status: 200,
-          error: "Network Err"
-        });
-      });
+  xit("save course scenario", async function() {
+    let res = {
+      id: 10,
+      title: "Securing React Apps with Auth0",
+      slug: "react-auth0-authentication-security",
+      authorId: 2,
+      category: "JavaScript"
+  };
+    
+  axiosMock.put.mockImplementationOnce(() => Promise.resolve(res));
+  expect(saveCourse(res)).resolves.toEqual(res);
+  expect(axiosMock.put).toHaveBeenCalledTimes(1);
 
-      return p;
-    });
-    const response = await getCourses();
-    console.log("response---->55555", response);
-    expect(response).toEqual(errData);
   });
+  
 });
