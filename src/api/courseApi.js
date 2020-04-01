@@ -3,7 +3,7 @@ const baseUrl = "http://localhost:3001/courses/";
 
 //console.log("baseURL-->", process.env);
 export function getCourses() {
-  console.log(">>>>>>>>>", baseUrl);
+  // console.log(">>>>>>>>>", baseUrl);
   return fetch(baseUrl)
     .then(handleResponse)
     .catch(handleError);
