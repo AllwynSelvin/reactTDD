@@ -16,7 +16,7 @@ export function getCourses(){
 }
 
 export function saveCourse(course){
-  console.log(course, course.id);
+  // console.log(course, course.id);
   const config = {
       method: course.id ? 'PUT' : 'POST',// POST for create, PUT to update when id already exists.
       url: baseUrl + (course.id || ''),
@@ -39,8 +39,7 @@ export function deleteCourse(courseId){
   
   return axios.delete(baseUrl+ courseId)
   .then((res) => {
-    console.log('Delete course test',res);
-      if(res.status == 200) { console.log(res); return res.data; }
+      if(res.status == 200) { return res.data; }
       if(res.status === 400){
           const error = res.text();
           throw new Error(error);
