@@ -3,8 +3,15 @@ import { Tabs, Tab } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import Tabcontentdetails from '../common/tabContentDetails';
 
+const setTheCookies = () => {
+  document.cookie = "username=John Doe;"
+}
+
 const AboutPage = () => (
   <div>
+    {localStorage.setItem('test', 1)}
+    {localStorage.getItem('test')}
+    {setTheCookies()}
     <h2>About</h2>
     <p>
       This app uses React, Redux, React Router, and many other helpful
@@ -13,6 +20,7 @@ const AboutPage = () => (
     <Uncontrolledtabs />
   </div>
 );
+
 
 const styles = {
   padding: '0px',
