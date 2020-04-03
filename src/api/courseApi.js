@@ -6,7 +6,7 @@ const baseUrl = "http://localhost:3001/courses/";
 export function getCourses(){
   return axios.get(baseUrl)
   .then((res) => {
-      if(res.status == 200) { console.log(res); return res.data; }
+      if(res.status == 200) return res.data;
       if(res.status === 400){
           const error = res.text();
           throw new Error(error);
@@ -25,8 +25,7 @@ export function saveCourse(course){
   }
   return axios(config)
   .then((res) => {
-      if(res.status === 201) { console.log(res); return res.data; }
-      if(res.status === 200) { console.log(res); return res.data; }
+      if(res.status === 201 || res.status === 200) return res.data;
       if(res.status === 400){
           const error = res.text();
           throw new Error(error);
